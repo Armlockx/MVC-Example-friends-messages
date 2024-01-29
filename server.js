@@ -21,7 +21,7 @@ app.post('/friends', friendsController.postFriend);
 
 app.get('/friends', friendsController.getFriends);
 
-app.get('/friends/:friendId', friendsController.postFriend);
+app.get('/friends/:friendId', friendsController.getFriend);
 
 app.get('/messages', messagesController.getMessages);
 
