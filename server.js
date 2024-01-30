@@ -6,6 +6,9 @@ const messagesRouter = require('./routes/messages.router');
 
 const app = express();
 
+app.set('view engine', 'hbs');  //load handlebars
+app.set('views', path.join(__dirname, 'views'));    //find templates inside this folder
+
 const PORT = 3000;
 
 //MUST BE THE FIRST ROUT HANDLER!!!!!!!! 'logging'
@@ -16,11 +19,16 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.baseUrl}${req.url} ${delta} ms`);
 });
 
-app.use('/site', express.static(path.join(__dirname ,'public')));
+app.use('/site', express.static(path.join(__dirname ,'public')));   //public becomes the root for the website
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.render('index', {
+        title: 'Blender if VERY free',
+        caption: 'Let\'s create 3D models!',
+    })
+});
 app.use('/friends', friendsRouter);
-
 app.use('/messages', messagesRouter);
 
 app.listen(PORT, () => {
