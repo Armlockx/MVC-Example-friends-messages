@@ -1,5 +1,7 @@
+const path = require('path');   // /folder/files.jpg
+
 function getMessages(req, res) {
-    res.send('<ul><li>Hello Mr. brightside!</li></ul>');
+    res.sendFile(path.join(__dirname, '..', 'public', 'images', 'Surface Laptop 2 - Default.jpg'));
 }
 
 function postMessage (req, res) {
